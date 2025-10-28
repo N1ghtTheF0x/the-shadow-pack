@@ -1,0 +1,11 @@
+{
+    "include": ["scripts"],
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "nodenext",
+        "moduleResolution": "nodenext",
+        "lib": ["ESNext"],
+        "types": ["node"],
+        "strict": true
+    }
+}
