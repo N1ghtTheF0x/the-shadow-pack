@@ -1,6 +1,7 @@
 import PackBuilder from "../builder.js"
 import { DESCRIPTION, PACK_FILENAME } from "../pack.js"
 import createPre16Inventory from "./gui/inventory.js"
+import { createPre16GUI } from "./gui/other.js"
 
 class Pre16PackBuilder extends PackBuilder
 {
@@ -10,6 +11,7 @@ class Pre16PackBuilder extends PackBuilder
         this
         .addBinaryBuild(PACK_FILENAME["texture"],DESCRIPTION["texture"])
         .addBuild("gui/inventory.png",createPre16Inventory)
+        .addBuild("gui/gui.png",createPre16GUI)
     }
 }
 
