@@ -1,0 +1,16 @@
+#!/bin/bash
+
+pnpm build
+
+cdir=${PWD}
+
+for dir in out/*/
+do
+    dir=${dir%*/}
+    name="${dir##*/}"
+    filename="${cdir}/out/The Shadow Pack - ${name}.zip"
+    cd "${cdir}/out/${name}" || return
+        rm -f "${filename}"
+        zip -r "${filename}" ./*
+    cd "${cdir}" || return
+done

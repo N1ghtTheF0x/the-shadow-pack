@@ -1,0 +1,8 @@
+#!/bin/bash
+
+source .env
+
+for inst in ${PRE16_INSTANCES//:/ };
+do
+    cp "out/The Shadow Pack - pre-1.6.zip" "$inst/The Shadow Pack - pre-1.6.zip"
+done
