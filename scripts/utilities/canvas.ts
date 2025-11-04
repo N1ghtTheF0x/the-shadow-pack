@@ -8,10 +8,10 @@ export function createCanvas(width: number,height: number): CanvasRenderingConte
     return ctx
 }
 
-export function image2canvas(image: Image): Canvas
+export function image2canvas(image: Image,width = image.naturalWidth,height = image.naturalHeight): Canvas
 {
-    const ctx = createCanvas(image.naturalWidth,image.naturalHeight)
-    ctx.drawImage(image,0,0)
+    const ctx = createCanvas(width,height)
+    ctx.drawImage(image,0,0,width,height)
     return ctx.canvas
 }
 
