@@ -2,16 +2,17 @@ import { resolve } from "node:path"
 import { createFolderForFile } from "./utilities/file.js"
 import { copyFileSync, existsSync, rmSync, WriteFileOptions, writeFileSync } from "node:fs"
 import { Canvas, Image } from "canvas"
-import { getImageBuffer } from "./utilities/canvas.js"
+import { getImageBuffer, image2canvas } from "./utilities/canvas.js"
 import Textures from "./textures.js"
 
 class PackBuilder
 {
     public assets: Record<string,PackBuilder.BuildCallback> = {}
     public get outputFolderPath(): string {return resolve(PackBuilder.OUTPUT_FOLDERPATH,this.name)}
-    protected constructor(public readonly name: string)
+    protected constructor(public readonly name: string,options?: PackBuilder.IOptions)
     {
-        this.addImageBuild("pack.png",Textures.PACK)
+        let packIcon = Array.isArray(options?.icon) ? image2canvas(Textures.PACK,options.icon[0],options.icon[1]) : Textures.PACK
+        this.addImageBuild("pack.png",packIcon)
     }
     public addBuild(filename: string,cb: PackBuilder.BuildCallback): this
     {
@@ -49,6 +50,7 @@ class PackBuilder
         }
         const end = performance.now()
         console.info(`[\x1b[32m${this.name}\x1b[0m] end building, took \x1b[34m${Math.round(end-start)}\x1b[0mms`)
+
     }
 }
 
@@ -56,6 +58,10 @@ namespace PackBuilder
 {
     export const OUTPUT_FOLDERPATH = resolve(process.cwd(),"out")
     export type BuildCallback = (this: PackBuilder,filepath: string) => void
+    export interface IOptions
+    {
+        icon?: [number,number]
+    }
 }
 
 export default PackBuilder
