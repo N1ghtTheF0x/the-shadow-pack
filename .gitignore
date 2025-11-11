@@ -1,5 +1,6 @@
 # NodeJS
 node_modules
 out
+cache
 # Dev Environment
 .env
