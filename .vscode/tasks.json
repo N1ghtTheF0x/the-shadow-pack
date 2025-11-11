@@ -1,0 +1,32 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Publish",
+            "type": "shell",
+            "command": "${workspaceFolder}/publish",
+            "windows": {
+                "command": "${workspaceFolder}/publish.ps1"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Copy",
+            "type": "shell",
+            "command": "${workspaceFolder}/copy",
+            "windows": {
+                "command": "${workspaceFolder}/copy.ps1"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Prepare",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "dependsOn": ["Publish","Copy"],
+            "dependsOrder": "sequence"
+        }
+    ]
+}
