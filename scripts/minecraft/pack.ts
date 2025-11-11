@@ -1,4 +1,4 @@
-import type { Identifier, PackType } from "./mc.js"
+import type { Identifier, PackType } from "./types.js"
 
 export interface IPackData
 {
