@@ -1,9 +1,6 @@
-import { writeFileSync } from "node:fs"
-import { createCanvas } from "../../utilities/canvas.js"
 import { IVec2 } from "../../utilities/math.js"
 import Textures from "../../textures.js"
-
-const WIDTH = 256, HEIGHT = 256
+import Atlas from "../../atlas.js"
 
 const BASE_POS: IVec2 = {
     x: 0,
@@ -14,14 +11,11 @@ const STATUS_EFFECT_BAR_POS: IVec2 = {
     y: 166
 }
 
-function createPre16Inventory(filepath: string): void
+function createPre16Inventory(filepath: string): Atlas
 {
-    const ctx = createCanvas(WIDTH,HEIGHT)
-
-    ctx.drawImage(Textures.Gui.INVENTORY,BASE_POS.x,BASE_POS.y)
-    ctx.drawImage(Textures.Gui.STATUS_EFFECT_BAR,STATUS_EFFECT_BAR_POS.x,STATUS_EFFECT_BAR_POS.y)
-
-    writeFileSync(filepath,ctx.canvas.toBuffer())
+    return new Atlas(filepath,256,256)
+    .addImage(Textures.Gui.INVENTORY,BASE_POS)
+    .addImage(Textures.Gui.STATUS_EFFECT_BAR,STATUS_EFFECT_BAR_POS)
 }
 
 export default createPre16Inventory
