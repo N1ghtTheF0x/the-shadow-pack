@@ -55,7 +55,6 @@ const PING_POS: Array<IVec2> = Textures.Gui.PING.map((_,i) => {return {x: 0,y: P
 const PING_POS2: Array<IVec2> = Textures.Gui.PING.map((_,i) => {return {x: 0,y: PING_OFFSET2_Y + (i * Textures.Gui.PING[0].naturalHeight)}})
 const PINGING_POS: Array<IVec2> = Textures.Gui.PINGING.map((_,i) => {return {x: PINGING_OFFSET.x,y: PINGING_OFFSET.y + (i * Textures.Gui.PINGING[0].naturalHeight)}})
 
-
 function createPre16Icons(filepath: string): Atlas
 {
     return new Atlas(filepath,256,256)

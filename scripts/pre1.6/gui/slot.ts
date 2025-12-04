@@ -3,8 +3,8 @@ import Textures from "../../textures.js"
 import { IVec2 } from "../../utilities/math.js"
 
 const SLOT_POS: [IVec2,IVec2] = [
-    {x: 0,y: 0},
-    {x: 0,y: 18}
+    {x: 0,y: 18},
+    {x: 0,y: 0}
 ]
 
 const ARROW_UP_POS: IVec2 = {
