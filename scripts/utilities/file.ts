@@ -1,7 +1,9 @@
 import { mkdirSync } from "node:fs"
 import { dirname } from "node:path"
 
-export function createFolderForFile(filepath: string): void
+export function createFolderForFile(filepath: string): string
 {
-    mkdirSync(dirname(filepath),{recursive: true})
+    const dir = dirname(filepath)
+    mkdirSync(dir,{recursive: true})
+    return dir
 }
