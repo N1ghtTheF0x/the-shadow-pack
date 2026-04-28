@@ -5,8 +5,10 @@ import { IVec2 } from "./utilities/math.js"
 class Atlas
 {
     private readonly _ctx: CanvasRenderingContext2D
-    public constructor(public readonly filepath: string,width: number,height: number)
+    public readonly filepath: string
+    public constructor(filepath: string,width: number,height: number)
     {
+        this.filepath = filepath
         this._ctx = createCanvasContext(width,height)
     }
     public addImage(image: Image | Canvas,position: IVec2): this

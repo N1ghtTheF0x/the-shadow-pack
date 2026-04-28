@@ -7,13 +7,18 @@ import Textures from "./textures.js"
 import { CACHE_FOLDERPATH, OUTPUT_FOLDERPATH } from "./paths.js"
 import Version from "./minecraft/version.js"
 import Atlas from "./atlas.js"
+import { execFileSync } from "node:child_process"
 
 class PackBuilder
 {
     public assets: Record<string,PackBuilder.BuildCallback> = {}
     public get outputFolderPath(): string {return resolve(OUTPUT_FOLDERPATH,this.name)}
-    protected constructor(public readonly name: string,public readonly supportedVersions: Array<string>,options?: PackBuilder.IOptions)
+    public readonly name: string
+    public readonly supportedVersions: Array<string>
+    protected constructor(name: string,supportedVersions: Array<string>,options?: PackBuilder.IOptions)
     {
+        this.name = name
+        this.supportedVersions = supportedVersions
         let packIcon = Array.isArray(options?.icon) ? image2canvas(Textures.PACK,options.icon[0],options.icon[1]) : Textures.PACK
         this.addImageBuild("pack.png",packIcon)
     }
@@ -53,11 +58,12 @@ class PackBuilder
         for(const version of this.supportedVersions)
         {
             const pkg = await Version.setupPackage2(version)
-            const filepath = resolve(CACHE_FOLDERPATH,`${version}.jar`)
+            const filepath = resolve(CACHE_FOLDERPATH,version,`${version}.jar`)
             if(existsSync(filepath))
                 continue
-            createFolderForFile(filepath)
+            const dir = createFolderForFile(filepath)
             writeFileSync(filepath,Buffer.from(await (await fetch(pkg.downloads.client.url)).arrayBuffer()),"utf-8")
+            execFileSync("jar",["xf",`${version}.jar`],{cwd: dir})
         }
     }
     public build(): void
