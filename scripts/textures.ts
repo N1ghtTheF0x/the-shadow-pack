@@ -2,77 +2,71 @@ import { loadImage } from "canvas"
 import { resolve } from "node:path"
 import { TEXTURES_FOLDERPATH } from "./paths.js"
 
-const TEXTURES_GUI_FOLDERPATH = resolve(TEXTURES_FOLDERPATH,"gui")
-const TEXTURES_TITLE_FOLDERPATH = resolve(TEXTURES_FOLDERPATH,"title")
-const TEXTURES_MISC_FOLDERPATH = resolve(TEXTURES_FOLDERPATH,"misc")
-const TEXTURES_ACHIEVEMENT_FOLDERPATH = resolve(TEXTURES_FOLDERPATH,"achievement")
-
 //#region
 
-const pack = await loadImage(resolve(TEXTURES_FOLDERPATH,"pack.png"))
+const load = (...path: Array<string>) => loadImage(resolve(TEXTURES_FOLDERPATH,...path))
 
-const loadAchievementImage = (...path: Array<string>) => loadImage(resolve(TEXTURES_ACHIEVEMENT_FOLDERPATH,...path))
+const pack = await load("pack.png")
 
-const achievement = await loadAchievementImage("achievement.png")
-const achievement2 = await loadAchievementImage("achievement2.png")
-const achievementToast = await loadAchievementImage("toast.png")
-const achievementBorder = await loadAchievementImage("border.png")
+const achievement = await load("gui","game","achievement","base.png")
+const achievement2 = await load("gui","game","achievement","special.png")
+const achievementToast = await load("gui","game","achievement","toast.png")
+const achievementBorder = await load("gui","game","achievement","border.png")
 
-const loadMiscImage = (...path: Array<string>) => loadImage(resolve(TEXTURES_MISC_FOLDERPATH,...path))
+const miscMapBG = await load("gui","game","mapbg.png")
 
-const miscMapBG = await loadMiscImage("mapbg.png")
 
-const loadTitleImage = (...path: Array<string>) => loadImage(resolve(TEXTURES_TITLE_FOLDERPATH,...path))
+const titleOldMojang = await load("gui","menu","title","mojang.png")
 
-const titleOldMojang = await loadTitleImage("mojang.png")
 
-const loadGuiImage = (...path: Array<string>) => loadImage(resolve(TEXTURES_GUI_FOLDERPATH,...path))
+const guiSlot = await load("gui","stat","slot.png")
+const guiSlotActive = await load("gui","stat","slot_active.png")
+const guiArrowUp = await load("gui","stat","arrow_up.png")
+const guiArrowDown = await load("gui","stat","arrow_down.png")
 
-const guiSlot = await loadGuiImage("slot.png")
-const guiSlotActive = await loadGuiImage("slot_active.png")
-const guiArrowUp = await loadGuiImage("arrow_up.png")
-const guiArrowDown = await loadGuiImage("arrow_down.png")
+const guiStatBreak = await load("gui","stat","stat_break.png")
+const guiStatCount = await load("gui","stat","stat_count.png")
+const guiStatCrafted = await load("gui","stat","stat_crafted.png")
+const guiStatPickaxe = await load("gui","stat","stat_pickaxe.png")
 
-const guiStatBreak = await loadGuiImage("stat_break.png")
-const guiStatCount = await loadGuiImage("stat_count.png")
-const guiStatCrafted = await loadGuiImage("stat_crafted.png")
-const guiStatPickaxe = await loadGuiImage("stat_pickaxe.png")
+const guiInventory = await load("gui","container","inventory.png")
+const guiStatusEffectBar = await load("gui","game","status_effect_bar.png")
+const guiHotbar = await load("gui","game","hotbar.png")
+const guiHotbarSelect = await load("gui","game","hotbar_select.png")
+const guiButton = await load("gui","menu","button","base.png")
+const guiButtonActive = await load("gui","menu","button","active.png")
+const guiButtonDisabled = await load("gui","menu","button","disabled.png")
+const guiCrosshair = await load("gui","game","crosshair.png")
+const guiBackground = await load("gui","menu","background.png")
+const guiButtonLang = await load("gui","menu","button","lang.png")
+const guiButtonLangActive = await load("gui","menu","button","lang_active.png")
 
-const guiInventory = await loadGuiImage("inventory.png")
-const guiStatusEffectBar = await loadGuiImage("status_effect_bar.png")
-const guiHotbar = await loadGuiImage("hotbar.png")
-const guiHotbarSelect = await loadGuiImage("hotbar_select.png")
-const guiButton = await loadGuiImage("button.png")
-const guiButtonActive = await loadGuiImage("button_active.png")
-const guiButtonDisabled = await loadGuiImage("button_disabled.png")
-const guiCrosshair = await loadGuiImage("crosshair.png")
-const guiBackground = await loadGuiImage("background.png")
-const guiButtonLang = await loadGuiImage("button_lang.png")
-const guiButtonLangActive = await loadGuiImage("button_lang_active.png")
+const guiDoubleChest = await load("gui","container","double_chest.png")
+const guiCraftingTable = await load("gui","container","crafting_table.png")
+const guiFurnaceBase = await load("gui","container","furnace","base.png")
+const guiFurnaceProgress = await load("gui","container","furnace","progress.png")
+const guiFurnaceFire = await load("gui","container","furnace","fire.png")
+const guiTrap = await load("gui","container","trap.png")
+const guiHopper = await load("gui","container","hopper.png")
+const guiAlchemyBase = await load("gui","container","alchemy","base.png")
+const guiAlchemyBubble = await load("gui","container","alchemy","bubble.png")
+const guiAlchemyProgress = await load("gui","container","alchemy","progress.png")
 
-const guiDoubleChest = await loadGuiImage("double_chest.png")
-const guiCraftingTable = await loadGuiImage("crafting_table.png")
-const guiFurnaceBase = await loadGuiImage("furnace_base.png")
-const guiFurnaceProgress = await loadGuiImage("furnace_progress.png")
-const guiFurnaceFire = await loadGuiImage("furnace_fire.png")
-const guiTrap = await loadGuiImage("trap.png")
-const guiHopper = await loadGuiImage("hopper.png")
-
-const guiArmorEmpty = await loadGuiImage("armor_empty.png")
-const guiArmorHalf = await loadGuiImage("armor_half.png")
-const guiArmroFull = await loadGuiImage("armor_full.png")
-const guiHeartBorderEmptyHurt = await loadGuiImage("heart_border_empty_hurt.png")
-const guiHeartBorderEmpty = await loadGuiImage("heart_border_empty.png")
-const guiHeartBorderHurt = await loadGuiImage("heart_border_hurt.png")
-const guiHeartBorder = await loadGuiImage("heart_border.png")
-const guiHeartHalfHurt = await loadGuiImage("heart_half_hurt.png")
-const guiHeartHalf = await loadGuiImage("heart_half.png")
-const guiHeartHurt = await loadGuiImage("heart_hurt.png")
-const guiHeart = await loadGuiImage("heart.png")
-const guiBubble = await loadGuiImage("bubble.png")
-const guiBubblePop = await loadGuiImage("bubble_pop.png")
-const guiPing = await Promise.all([5,4,3,2,1,0].map(async v => await loadGuiImage(`ping${v}.png`)))
-const guiPinging = await Promise.all([1,2,3,4,5].map(async v => await loadGuiImage(`pinging${v}.png`)))
+const guiArmorEmpty = await load("gui","game","armor","empty.png")
+const guiArmorHalf = await load("gui","game","armor","half.png")
+const guiArmroFull = await load("gui","game","armor","full.png")
+const guiHeartBorderEmptyHurt = await load("gui","game","heart","border","empty_hurt.png")
+const guiHeartBorderEmpty = await load("gui","game","heart","border","empty.png")
+const guiHeartBorderHurt = await load("gui","game","heart","border","hurt.png")
+const guiHeartBorder = await load("gui","game","heart","border","base.png")
+const guiHeartHalfHurt = await load("gui","game","heart","half_hurt.png")
+const guiHeartHalf = await load("gui","game","heart","half.png")
+const guiHeartHurt = await load("gui","game","heart","hurt.png")
+const guiHeart = await load("gui","game","heart","base.png")
+const guiBubble = await load("gui","game","bubble.png")
+const guiBubblePop = await load("gui","game","bubble_pop.png")
+const guiPing = await Promise.all([5,4,3,2,1,0].map(async v => await load("gui","network",`ping${v}.png`)))
+const guiPinging = await Promise.all([1,2,3,4,5].map(async v => await load("gui","network",`pinging${v}.png`)))
 
 //#endregion
 
@@ -127,6 +121,12 @@ namespace Textures
         export const TRAP = guiTrap
         export const DISPENSER = TRAP
         export const DROPPER = TRAP
+        export namespace Alchemy
+        {
+            export const BASE = guiAlchemyBase
+            export const BUBBLE = guiAlchemyBubble
+            export const PROGRESS = guiAlchemyProgress
+        }
         export namespace Armor
         {
             export const EMPTY = guiArmorEmpty
