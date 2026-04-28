@@ -7,6 +7,7 @@ import createPre16GUI from "./gui/gui.js"
 import createPre16Icons from "./gui/icons.js"
 import createPre16Achievement from "./achievement/gui.js"
 import createPre16Slot from "./gui/slot.js"
+import createPre16Alchemy from "./gui/alchemy.js"
 
 class Pre16PackBuilder extends PackBuilder
 {
@@ -28,6 +29,7 @@ class Pre16PackBuilder extends PackBuilder
         .addSourceImageBuild("gui/crafting.png",Textures.Gui.CRAFTING_TABLE,256,256)
         .addSourceImageBuild("gui/trap.png",Textures.Gui.TRAP,256,256)
         .addSourceImageBuild("gui/hopper.png",Textures.Gui.HOPPER,256,256)
+        .addAtlas("gui/alchemy.png",createPre16Alchemy)
     }
 }
 
